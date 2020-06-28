@@ -6,6 +6,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  fullname: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
@@ -15,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  role: [
+  roles: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'role',

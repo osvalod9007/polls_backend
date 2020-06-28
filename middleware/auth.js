@@ -31,19 +31,17 @@ const verifyToken = (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
   try {
-    let user = await User.findById(req.user._id);
-    console.log(user);
+    let user = await User.findById(req.user.id);
     try {
       let roles = await Role.find({ _id: { $in: user.roles } });
-      console.log(roles);
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === 'Admin') {
+        if (roles[i].name === 'admin') {
           next();
           return;
         }
       }
 
-      res.status(403).send({ message: 'Require Admin Role!' });
+      res.status(403).send({ msg: 'Require Admin Role!' });
       return;
     } catch (error) {
       res.status(500).send({ msg: error });
@@ -55,19 +53,17 @@ const isAdmin = async (req, res, next) => {
 
 const isPowerUser = async (req, res, next) => {
   try {
-    let user = await User.findById(req.user._id);
-    console.log(user);
+    let user = await User.findById(req.user.id);
     try {
       let roles = await Role.find({ _id: { $in: user.roles } });
-      console.log(roles);
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === 'Power User') {
+        if (roles[i].name === 'power_user') {
           next();
           return;
         }
       }
 
-      res.status(403).send({ message: 'Require Power User Role!' });
+      res.status(403).send({ msg: 'Require Power User Role!' });
       return;
     } catch (error) {
       res.status(500).send({ msg: error });

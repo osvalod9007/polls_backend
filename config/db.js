@@ -25,7 +25,7 @@ const initial = async () => {
   await Role.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
       new Role({
-        name: 'User',
+        name: 'user',
       }).save((err) => {
         if (err) {
           console.log('error', err);
@@ -35,7 +35,7 @@ const initial = async () => {
       });
 
       new Role({
-        name: 'Power User',
+        name: 'power_user',
       }).save((err) => {
         if (err) {
           console.log('error', err);
@@ -45,7 +45,7 @@ const initial = async () => {
       });
 
       new Role({
-        name: 'Admin',
+        name: 'admin',
       }).save((err) => {
         if (err) {
           console.log('error', err);
