@@ -20,7 +20,7 @@ const regExpPass = new RegExp(
 // @access   Private
 router.get('/all', [authJwt.verifyToken, authJwt.isAdmin], async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find({}, { password: 0, __v: 0 });
     res.json(users);
   } catch (err) {
     console.error(err.message);
