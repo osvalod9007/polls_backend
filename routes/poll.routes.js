@@ -183,6 +183,7 @@ router.put(
           author: poll.author,
           use: poll.user,
           date: poll.date,
+          status: poll.status,
           choices: choices,
         };
       }

@@ -99,10 +99,11 @@ router.post(
         user.roles = [userRoles._id];
       }
       await user.save();
+      console.log(user.id);
 
       const payload = {
         user: {
-          id: user.id,
+          id: user._id,
         },
       };
 

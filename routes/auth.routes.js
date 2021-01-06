@@ -29,7 +29,7 @@ router.get('/', authJwt.verifyToken, async (req, res) => {
 router.post(
   '/',
   [
-    check('username', 'Please include a valid email').exists(),
+    check('username', 'Username is required').exists(),
     check('password', 'Password is required').exists(),
   ],
   async (req, res) => {
@@ -59,7 +59,7 @@ router.post(
 
       const payload = {
         user: {
-          id: user.id,
+          id: user._id,
         },
       };
 
@@ -69,7 +69,7 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.status(200).json({ token });
         }
       );
     } catch (err) {
